@@ -31,7 +31,7 @@ if node['ssh_keys']
         ssh_keys += Array(data['ssh_keys']) if data && data['ssh_keys']
       end
 
-      if !bag_users.is_a?(String) &&  !bag_users.is_a?(Array) && !bag_users['groups'].nil?
+      if !bag_users.is_a?(String) && !bag_users.is_a?(Array) && !bag_users['groups'].nil?
         Array(bag_users['groups']).each do |group_name|
           if !Chef::Config[:solo]
             search(:users, 'groups:' + group_name) do |search_user|
@@ -47,7 +47,7 @@ if node['ssh_keys']
       if ssh_keys.length > 0
         home_dir = user['dir']
 
-        next if node['ssh_keys_skip_missing_home'] &&  !File.exist?(home_dir)
+        next if node['ssh_keys_skip_missing_home'] && !File.exist?(home_dir)
 
         authorized_keys_file = "#{home_dir}/.ssh/authorized_keys"
 
