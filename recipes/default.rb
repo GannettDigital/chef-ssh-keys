@@ -38,7 +38,7 @@ if node['ssh_keys']
       if !bag_users.is_a?(String) && !bag_users.is_a?(Array) && !bag_users['groups'].nil?
         Array(bag_users['groups']).each do |group_name|
           if !Chef::Config[:solo]
-            search(:users, 'groups:' + group_name) do |search_user|
+            search(:users, "groups:#{group_name}") do |search_user|
               ssh_keys += Array(search_user['ssh_keys'])
             end
           else
