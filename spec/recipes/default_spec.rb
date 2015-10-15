@@ -22,7 +22,7 @@ describe 'ssh-keys::default' do
       mode:   0600,
       owner: 'root',
       group: 'root',
-      action: "create"
+      action: [:create]
     )
   end 
  end
