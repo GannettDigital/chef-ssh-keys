@@ -2,9 +2,13 @@ if node['ssh_keys']
   node['ssh_keys'].each do |node_user, bag_users|
     next unless node_user
     next unless bag_users
+    next unless node['etc']
+    next unless node['etc']['passwd']
 
     # Getting node user data
     user = node['etc']['passwd'][node_user]
+
+    next unless user
 
     # Defaults for new user
     user = { 'uid' => node_user, 'gid' => node_user, 'dir' => "/home/#{node_user}" } unless user
