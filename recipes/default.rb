@@ -3,7 +3,7 @@ if node['ssh_keys']
     next unless node_user
     next unless bag_users
     next unless node['etc'] && node['etc']['passwd']
-    
+
     # Getting node user data
     user = node['etc']['passwd'][node_user]
 
